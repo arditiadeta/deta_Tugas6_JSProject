@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🌡️ Konverter Suhu</title>
+  <style>
+    /* 🌤️ Desain dasar */
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom right, #9fd3c7, #dbe2ef);
+      color: #222;
+      text-align: center;
+      padding: 50px;
+      margin: 0;
+      height: 100vh;
+    }
+
+    /* 🧊 Kartu utama */
+    .container {
+      background: #ffffffcc;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      padding: 30px 50px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      color: #112d4e;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    p {
+      font-weight: 500;
+      color: #3f72af;
+      margin-bottom: 20px;
+    }
+
+    /* 🔘 Input dan tombol */
+    input, select, button {
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      margin: 5px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #3f72af;
+      box-shadow: 0 0 5px #3f72af;
+    }
+
+    select {
+      background-color: #f7f7f7;
+    }
+
+    button {
+      background-color: #3f72af;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2e5b8c;
+      transform: scale(1.05);
+    }
+
+    /* 🌡️ Hasil */
+    #hasil {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #112d4e;
+      font-weight: bold;
+    }
+
+    .highlight {
+      color: #d32f2f;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌡️ Konverter Suhu</h1>
+    <p>Masukkan Suhu:</p>
+
+    <input type="number" id="nilai" placeholder="Masukkan suhu">
+    <select id="konversi">
+      <option value="CtoF">Celsius → Fahrenheit</option>
+      <option value="FtoC">Fahrenheit → Celsius</option>
+    </select>
+    <button onclick="konversiSuhu()">Konversi</button>
+
+    <p id="hasil"></p>
+  </div>
+
+  <footer>
+    Dibuat dengan ❤️ oleh Deta | Project JS Dasar
+  </footer>
+
+  <script>
+    function konversiSuhu() {
+      let nilai = parseFloat(document.getElementById("nilai").value);
+      let pilihan = document.getElementById("konversi").value;
+      let hasil;
+
+      if (isNaN(nilai)) {
+        document.getElementById("hasil").innerHTML = "⚠️ Masukkan angka yang valid!";
+        return;
+      }
+
+      if (pilihan === "CtoF") {
+        hasil = (nilai * 9 / 5) + 32;
+        document.getElementById("hasil").innerHTML =
+          `<span class="highlight">${nilai}°C</span> = <span class="highlight">${hasil.toFixed(2)}°F</span>`;
+      } else if (pilihan === "FtoC") {
+        hasil = (nilai - 32) * 5 / 9;
+        document.getElementById("hasil").innerHTML =
+          `<span class="highlight">${nilai}°F</span> = <span class="highlight">${hasil.toFixed(2)}°C</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
